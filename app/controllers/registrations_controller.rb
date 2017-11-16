@@ -14,12 +14,13 @@ class RegistrationsController < ApplicationController
                     },status: 400
                 else
                     @user = User.new(reg_params)
+                    UserMailer.signup_confirmation(@user).deliver
                     if @user.save
                         render json: {
                             :user =>{
                                 email: @user.email,
                                 token: @user.authentication_token,
-                                msg: "No such user; check the submitted email address",
+                                msg: "Registration Successful",
                                 status: 200
                             }
                           }, status: 200
@@ -35,6 +36,31 @@ class RegistrationsController < ApplicationController
                     
                 end
     
+        end
+
+
+        def confirmation
+            @user = User.where(encrypted_password: params[:token]).first
+            if @user.present? && !@user.confirmed
+                @user.confirmed = true
+                @user.save!
+                render json: {
+                    user: {
+                        email: @user.email,
+                        token: @user.authentication_token,
+                        msg: "Registration Successful",
+                        status: 200
+                    },
+                    status: 200
+                }
+            else
+                render json: {
+                    :errors =>{
+                        msg: "Confirmation token not matched or you are already confirmed",
+                        status: 400
+                    }
+                    }, status: 400
+            end
         end
     
     
