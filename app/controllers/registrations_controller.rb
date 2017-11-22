@@ -67,6 +67,32 @@ class RegistrationsController < ApplicationController
         def destroy
     
         end
+        def password_reset
+            render json: {
+                :errors =>{
+                    msg: "No Email found for password reset",
+                    status: 400
+                }
+                }, status: 200
+        end
+
+        def validate_token
+            render json: {
+                :errors =>{
+                    msg: "No Email found for password reset",
+                    status: 400
+                }
+                }, status: 200
+        end
+
+        def password_reset_form
+            render json: {
+                :errors =>{
+                    msg: "No Email found for password reset",
+                    status: 400
+                }
+                }, status: 200
+        end
 
 
         private

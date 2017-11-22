@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :registrations , only: [:create,:destroy] do
     collection do
       post :confirmation
+      post :password_reset
+      post :validate_token
+      post :password_reset_form
     end
   end
 

@@ -25,7 +25,7 @@ gem 'devise'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', :require => 'rack/cors'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
-
+gem 'goodreads'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
