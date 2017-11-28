@@ -11,4 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :books do
+    collection do
+      get :search
+      post :save_books
+    end
+  end
+
 end
